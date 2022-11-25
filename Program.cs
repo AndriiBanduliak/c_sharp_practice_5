@@ -1,31 +1,42 @@
-﻿
-using static System.Console;
+﻿using static System.Console;
 Clear();
+WriteLine("Введите колличество элементов массива: ");
+int numb = Convert.ToInt32(ReadLine());
+int[] mass = GetArray(numb);
+WriteLine($"{String.Join(" ", mass)}");
+int[] massSum = GetSum(mass);
+WriteLine($"{String.Join(" ", massSum)}");
 
-int[] mas = GetArray(123);
-WriteLine($"{String.Join(" ", mas)}");
-WriteLine($"Количество элементов на отрезке {GetCountNumber(mas, 10, 99)}");
 
 
-int[] GetArray(int l)
+
+
+
+int[] GetArray(int L)
 {
-    int[] result = new int[l];
+    int[] result = new int[L];
     for (int i = 0; i < result.Length; i++)
     {
-        result[i] = new Random().Next(-150, 121);
+        result[i] = new Random().Next(0, 10);
     }
+
     return result;
 }
 
-int GetCountNumber(int[] array, int minCount, int maxCount)
+int[] GetSum(int[] array)
 {
-    int count = 0;
-    for (int j = 0; j < array.Length; j++)
-    {
-        if (array[j] >= minCount && array[j] <= maxCount)
-        {
-            count += 1;
-        }
-    }
-    return count;
+    int length = array.Length % 2 == 0 ? array.Length / 2 : array.Length / 2 + 1;
+    int[] ArraySum = new int[length];
+for (int i = 0; i < ArraySum.Length; i++)
+{
+   if (array[i]!=array[(array.Length-1)-i])
+   {
+     ArraySum[i]=array[i]*array[(array.Length-1)-i];
+   }
+   else
+   {
+    ArraySum[i]=array[i];
+   }
+}
+    return ArraySum;
 }
