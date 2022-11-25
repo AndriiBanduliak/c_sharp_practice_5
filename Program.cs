@@ -1,26 +1,30 @@
-﻿
+﻿/* Задайте массив из 12 элементов, заполненный случайными числами из промежутка [-9, 9]. 
+Найдите сумму отрицательных и положительных элементов массива*/
+
 using static System.Console;
 Clear();
 
-int[] array = GetArray(8);
-WriteLine($"{String.Join(" ", array)}");
+int[] Massive = new int[12];
+int summax = 0;
+int summin = 0;
 
-for (int i = 0; i < array.Length; i++)
+for (int i = 0; i < Massive.Length; i++)
 {
-    array[i] *= (-1);
+    Massive[i] = new Random().Next(-9, 10);
 }
-WriteLine($"{String.Join(" ", array)}");
+
+WriteLine(String.Join(", ", Massive));
 
 
-
-
-int[] GetArray(int L)
+for (int j = 0; j < Massive.Length; j++)
 {
-    int[] result = new int[L];
-    for (int i = 0; i < result.Length; i++)
+    if (Massive[j] >= 0)
     {
-        result[i] = new Random().Next(-9, 10);
-    }
 
-    return result;
+        summax = summax + Massive[j];
+    }
+    else summin = summin + Massive[j];
 }
+
+WriteLine($"Сумма положительных элементов массива равна: {summax}");
+WriteLine($"Сумма отрицательных элементов массива равна: {summin}");
