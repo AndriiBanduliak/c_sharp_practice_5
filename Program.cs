@@ -2,36 +2,30 @@
 using static System.Console;
 Clear();
 
-int[] array = GetArray(6);
-WriteLine($"{String.Join(" ", array)}");
-
-WriteLine("Введите число которое вы хотите проверить на наличие в массиве: ");
-int number = Int32.Parse(ReadLine());
-
-bool result = FindElement(array, number);
-WriteLine($"Наличие заданного элемента в массиве: {result}");
+int[] mas = GetArray(123);
+WriteLine($"{String.Join(" ", mas)}");
+WriteLine($"Количество элементов на отрезке {GetCountNumber(mas, 10, 99)}");
 
 
-bool FindElement(int[] array, int element)
+int[] GetArray(int l)
 {
-    for (int i = 0; i < array.Length; i++)
-    {
-        if (array[i] == element)
-        {
-            return true;
-        }
-    }
-     return false;
-
-}
-
-int[] GetArray(int L)
-{
-    int[] result = new int[L];
+    int[] result = new int[l];
     for (int i = 0; i < result.Length; i++)
     {
-        result[i] = new Random().Next(-9, 10);
+        result[i] = new Random().Next(-150, 121);
     }
-
     return result;
+}
+
+int GetCountNumber(int[] array, int minCount, int maxCount)
+{
+    int count = 0;
+    for (int j = 0; j < array.Length; j++)
+    {
+        if (array[j] >= minCount && array[j] <= maxCount)
+        {
+            count += 1;
+        }
+    }
+    return count;
 }
