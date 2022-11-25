@@ -2,17 +2,28 @@
 using static System.Console;
 Clear();
 
-int[] array = GetArray(8);
+int[] array = GetArray(6);
 WriteLine($"{String.Join(" ", array)}");
 
-for (int i = 0; i < array.Length; i++)
+WriteLine("Введите число которое вы хотите проверить на наличие в массиве: ");
+int number = Int32.Parse(ReadLine());
+
+bool result = FindElement(array, number);
+WriteLine($"Наличие заданного элемента в массиве: {result}");
+
+
+bool FindElement(int[] array, int element)
 {
-    array[i] *= (-1);
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i] == element)
+        {
+            return true;
+        }
+    }
+     return false;
+
 }
-WriteLine($"{String.Join(" ", array)}");
-
-
-
 
 int[] GetArray(int L)
 {
